@@ -1,6 +1,9 @@
-/**
- * 
+/*
+ * @LastEditors  : zcc
+ * @Date: 2019-12-28 13:09:42
+ * @Description:  基础栈
  */
+
 function Stack(){
   this.stackArr = []
 

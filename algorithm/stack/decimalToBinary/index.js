@@ -1,7 +1,12 @@
+/*
+ * @LastEditors  : zcc
+ * @Date: 2019-12-28 14:02:57
+ * @Description:  十进制转二进制
+ */
 /**
  * @function decimalToBinary
  * @description 十进制转二进制
- * @param decimaldecimalNum 十进制数字
+ * @param { decimaldecimalNum }
  */
 
  function decimalToBinary(decimalNum){
