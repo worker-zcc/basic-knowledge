@@ -4,7 +4,7 @@
  * @Description:  击鼓传花（基于队列-数组）预定一个数字，一组人围成一圈轮流数数，数到预定数字的人淘汰，以此循环，直到只剩一个人
  */
  
- import BaseQueue from "./basicQueue"
+ import BaseQueue from "."
 
  function passGame(arr,num){
    let queue = new BaseQueue()
