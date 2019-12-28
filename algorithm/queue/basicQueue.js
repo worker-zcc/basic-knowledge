@@ -4,7 +4,7 @@
  * @Description:  基础队列（数组）
  */
 
- function BaseQueue(){
+ export default function BaseQueue(){
    this.queueArr = []
    BaseQueue.prototype.enqueue = function(queueNum){
      this.queueArr.push(queueNum)
@@ -34,16 +34,3 @@
  }
 
  let queue = new BaseQueue()
-
- queue.enqueue('a')
- queue.enqueue('b')
- queue.enqueue('c')
-
- console.log(queue)
- queue.dequeue()
-
- console.log(queue)
- console.log(queue.toString())
- console.log(queue.isEmpty())
- console.log(queue.size())
- console.log(queue.front())
