@@ -6,7 +6,7 @@
  */
 
 function Set() {
-  this.aggregate = new Object(null)
+  this.aggregate = Object.create(null)
   Set.prototype.add = function (value) {
     if (this.has(value)) {
       return false
@@ -27,7 +27,7 @@ function Set() {
     }
   }
   Set.prototype.clear = function () {
-    this.aggregate = new Object(null)
+    this.aggregate = Object.create(null)
   }
   Set.prototype.size = function () {
     return Object.keys(this.aggregate).length
