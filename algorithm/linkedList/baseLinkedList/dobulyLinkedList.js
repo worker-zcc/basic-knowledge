@@ -81,6 +81,47 @@ function DobulyLinkedList() {
 
     return -1
   }
+  DobulyLinkedList.prototype.update = function (data, position) {
+    if (position < 0 || position > this.length) return false
+    let index = 0
+    let currentNode = this.head
+    while (index++ < position) {
+      currentNode = currentNode.next
+    }
+    currentNode.data = data
+    return true
+  }
+  DobulyLinkedList.prototype.removeAt = function (position) {
+    if (position < 0 || position >= this.length) return null
+
+    let currentNode = this.head
+    if (this.length === 1) {
+      this.head = null
+      this.tail = null
+    } else {
+      if (position === 0) {
+        this.head.next.prev = null
+        this.head = this.head.next
+      } else if (position === this.length - 1) {
+        currentNode = this.tail
+        this.tail.prev.next = null
+        this.tail = this.tail.prev
+      } else {
+        let index = 0
+        while (index++ < position) {
+          currentNode = currentNode.next
+        }
+        currentNode.prev.next = currentNode.next
+        currentNode.next.prev = currentNode.prev
+      }
+    }
+    this.length -= 1
+    return currentNode.data
+  }
+  DobulyLinkedList.prototype.remove = function (data) {
+
+    return this.removeAt(this.indexOf(data))
+  }
   DobulyLinkedList.prototype.toString = function () {
     return this.forwardString()
   }
@@ -102,6 +143,18 @@ function DobulyLinkedList() {
     }
     return strLinkedList
   }
+  DobulyLinkedList.prototype.isEmpty = function () {
+    return this.length === 0
+  }
+  DobulyLinkedList.prototype.size = function () {
+    return this.length
+  }
+  DobulyLinkedList.prototype.getHead = function () {
+    return this.head.data
+  }
+  DobulyLinkedList.prototype.getTail = function () {
+    return this.tail.data
+  }
 }
 
 let list = new DobulyLinkedList()
@@ -119,4 +172,11 @@ list.insert('E', 4)
 console.log(list.toString())
 list.insert('0', 0)
 console.log(list.toString())
-console.log(list.get('3'))
+list.update('b', 2)
+console.log(list.toString())
+list.removeAt(0)
+console.log(list.toString())
+list.removeAt(4)
+console.log(list.toString())
+console.log(list.remove('C'))
+console.log(list.toString())
