@@ -123,7 +123,89 @@ function BinarySearchTree() {
     }
     return node.key
   }
-  BinarySearchTree.prototype.remove = function(key) {}
+  BinarySearchTree.prototype.remove = function(key) {
+    let current = this.root
+    let parent = null
+    let isLeft = true
+    // 查找节点
+    // console.log(current.key,key)
+    
+    while(current.key !== key){
+      parent = current
+      if(current.key > key){
+        current = current.left
+        isLeft = true
+      } else {
+        current = current.right
+        isLeft = false
+      }
+      if(current == null){
+        return false
+      }
+    }
+
+    // 判断子节点
+    // 1.没有子节点
+    if(current.left == null && current.right == null){
+      if(current == this.root){
+        this.root = null
+      } else if(isLeft){
+        parent.left = null
+      } else {
+        parent.right = null
+      }
+    }
+    // 2.只有一个子节点
+    else if(current.right == null && current.left !== null){
+      if(current == this.root){
+        this.root = current.left
+      }else if(isLeft){
+        parent.left = current.left
+      } else {
+        parent.right = current.left
+      }
+    } else if( current.right !== null && current.left == null){
+      if(current == this.root){
+        this.root = current.right
+      }else if(isLeft){
+        parent.left = current.right
+      } else {
+        parent.right = current.right
+      }
+    }
+    // 3.有两个子节点
+    // 3.1使用找后继的方法
+    else {
+      let successor = this.getSuccessor(current)
+      if(current == this.root){
+        this.root = successor
+      }else if(isLeft){
+        parent.left = successor
+      } else {
+        parent.right = successor
+      }
+      successor.left = current.left
+    }
+  }
+  /**
+   * @function getSuccessor
+   * @description 获取【后继】
+   */
+  BinarySearchTree.prototype.getSuccessor = function(current){
+    let successor = current
+    let successorParent = current
+    let successorCurrent = current.right
+    while (successorCurrent !== null){
+      successorParent = successor
+      successor = successorCurrent
+      successorCurrent = successorCurrent.left
+    }
+    if(current.right !== successor){
+      successorParent.left = successor.right
+      successor.right = current.right
+    }
+    return successor
+  }
 }
 let tree = new BinarySearchTree()
 tree.insert(11)
@@ -141,24 +223,28 @@ tree.insert(20)
 tree.insert(18)
 tree.insert(25)
 tree.insert(6)
+tree.insert(19)
 console.log(tree)
-let preStr = ""
-tree.preOrderTraverse(function(key) {
-  preStr += key + " "
-  // 回调函数，用来处理拼接方式
-})
-console.log(preStr)
-let midStr = ""
-tree.midOrderTraverse(function(key) {
-  midStr += key + " "
-})
-console.log(midStr)
-let postStr = ""
-tree.postOrderTraverse(function(key) {
-  postStr += key + " "
-})
-console.log(postStr)
-console.log(tree.min())
-console.log(tree.max())
-console.log(tree.search(25))
-console.log(tree.search(110))
+// let preStr = ""
+// tree.preOrderTraverse(function(key) {
+//   preStr += key + " "
+//   // 回调函数，用来处理拼接方式
+// })
+// console.log(preStr)
+// let midStr = ""
+// tree.midOrderTraverse(function(key) {
+//   midStr += key + " "
+// })
+// console.log(midStr)
+// let postStr = ""
+// tree.postOrderTraverse(function(key) {
+//   postStr += key + " "
+// })
+// console.log(postStr)
+// console.log(tree.min())
+// console.log(tree.max())
+// console.log(tree.search(25))
+// console.log(tree.search(110))
+
+tree.remove(11)
+console.log(tree)
