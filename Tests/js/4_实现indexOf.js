@@ -8,7 +8,7 @@
   }
   return -1
 }*/
-String.prototype.myIndexOf = function (T) {
+/*String.prototype.myIndexOf = function (T) {
   let lenT = T.length,
     lenS = this.length
   for (let i = 0; i < lenS - lenT; i++) {
@@ -17,8 +17,13 @@ String.prototype.myIndexOf = function (T) {
     }
   }
   return -1
+}*/
+// 正则
+String.prototype.myIndexOf = function (T) {
+  let reg = new RegExp(T)
+  let res = reg.exec(this)
+  return res === null ? -1 :res.index
 }
-
 
 let S = 'asdsdfghjkl',
   T = 'fgh'
