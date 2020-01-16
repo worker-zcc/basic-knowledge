@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style type="text/css">
+    #imgbox {
+      width: 700px;
+      margin: 100px auto;
+      height: 336px;
+      overflow: hidden;
+      background: #b1b1b1;
+      margin-top: 1000px;
+    }
+
+    img {
+      width: 100%;
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="imgbox">
+    <img src="#" alt=""
+      data-src="https://hbimg.huabanimg.com/77ced185592748b655a77ec8d04bc6f9b0b8331333661-XUQ4Jq_fw658" isLoad="false">
+  </div>
+  <script>
+    /**
+     * 图片懒加载
+     * 1.原因: 前端性能优化的重要方案，
+     * 通过图片或数据的懒加载，可以加快页面渲染速度,加快页面打开速度
+     * 只有滑动到某个区域，才加载真实图片，以节省加载的流量
+     * 2.处理方案
+     * 把所有需要加载的图片用一个盒子包起来，设置宽高和默认占位图
+     * 刚开始让所有img的src为空，把真实图片的地址放到img的自定义属性上，让img隐藏
+     * 带首屏所有资源加载完成后，开始加载图片
+     * 对于很多图片，需要当页面滚动的时候，当前图片区域完全显示出来后再加载真实图片
+     */
+
+    let imgbox = document.getElementById('imgbox')
+    let img = imgbox.childNodes[1]
+
+    function loadIMG(params) {
+      if (img.getAttribute('isLoad') === 'true') {
+        // 之前加载过就不会再加载
+        return
+      }
+      // A:图片底边距离页面顶部的偏移，即 = 图片高度 + 图片区域距离body的上偏移
+      let A = imgbox.clientHeight + imgbox.offsetTop
+      // B:浏览器底边距离页面顶端的偏移，即 = 浏览器可视取域的高度 + 滚动条卷去的高度
+      let B = window.innerHeight + window.scrollY
+      if (A <= B) {
+        // 加载真实图片
+        img.setAttribute('src', img.getAttribute('data-src'))
+        img.addEventListener('load', () => img.style.display = 'block')
+        img.setAttribute('isLoad', true) // 存储的自定义属性值都是字符串格式
+      }
+    }
+    window.addEventListener('load', loadIMG)
+    window.addEventListener('scroll', loadIMG)
+  </script>
+</body>
+
+</html>
