@@ -1,0 +1,33 @@
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Document</title>
+ </head>
+ <body>
+   <div id="AA" class="box clearfix"></div>
+   <div myIn='1'></div>
+   <div class="content box"></div>
+   <div name="BB"></div>
+   <div></div>
+   <div id="AA"></div>
+   <div myIn='1'></div>
+   <div class="box"></div>
+   <div myIn='2'></div>
+   <div name="BB"></div>
+   <script>
+     /**
+       * 实现$attr(name,value)
+       * 获取当前页面所有属性名为name，属性值为value的元素
+       */
+     function $attr(property, value) {
+       let elements = document.getElementsByTagName('*')
+       console.log(elements)
+     }
+     $attr()
+   </script>
+ </body>
+ </html>
