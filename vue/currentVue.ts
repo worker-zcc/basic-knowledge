@@ -26,3 +26,7 @@ function defineReactive(obj,key,val) {
     }
   })
 }
+function cb (val) {
+  /* 渲染视图 */
+  console.log("视图更新啦～");
+}
