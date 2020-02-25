@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style type="">
+    #canvas{
+      border: 1px solid #000;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas width="500" height="800" id="canvas"></canvas>
+  <script lang="javascript">
+    let can = document.getElementById('canvas') // 获得canvasDom对象
+    let crt = can.getContext('2d') //获得can的canvasRenderingContext对象
+    // 调用 crt（即Can的canvasRenderingContext对象完成绘图）
+    
+    /* 绘制图片 */
+    let img = new Image()
+    img.src = './prototype.png'
+    img.onload = function () {
+      crt.drawImage(img,90,130,300,200)
+    }
+
+    /* 绘制圆形渐变
+    const crg = crt.createRadialGradient(75,50,5,90,60,100)
+    crg.addColorStop(0,'red')
+    crg.addColorStop(1,'#fff')
+    crt.fillStyle = crg
+    crt.fillRect(10,10,150,100)
+     */
+
+    /* 绘制线性渐变
+    const clg = crt.createLinearGradient(50, 50, 200, 200)
+    clg.addColorStop(0.1, 'orange')
+    clg.addColorStop(1, 'green')
+    crt.fillStyle = clg
+    crt.fillRect(40, 40, 200, 200)
+    */
+
+    /* 绘制贝塞尔三次曲线
+    crt.beginPath()
+    crt.moveTo(100,100)
+    crt.bezierCurveTo(100,20, 200,20,300,100)
+    crt.stroke()
+     */
+
+    /* 绘制贝塞尔二次曲线 
+    crt.beginPath()
+    crt.moveTo(100,100)
+    crt.quadraticCurveTo(100,20, 200,100)
+    crt.stroke()
+    */
+
+    /* 绘制弧
+    crt.beginPath()
+    crt.moveTo(20,20)
+    crt.lineTo(100,20)
+    crt.arcTo(150,20,150,70,50)
+    crt.lineTo(150,120)
+    crt.closePath()
+    crt.strokeStyle = 'green'
+    crt.stroke()
+    */
+
+    /* 绘制圆
+    crt.beginPath()
+    crt.arc(150,150,50,0,1.5*Math.PI);
+    crt.closePath()
+    crt.strokeStyle = 'orange'
+    crt.stroke()
+
+    crt.beginPath()
+    crt.arc(150,300,50,0,1.5*Math.PI, true);
+    crt.closePath()
+    crt.strokeStyle = 'orange'
+    crt.stroke()
+
+    crt.beginPath()
+    crt.arc(300,150,50,0,1.5*Math.PI);
+    crt.closePath()
+    crt.fillStyle = 'blue'
+    crt.fill()
+
+    crt.beginPath()
+    crt.arc(300,300,50,0,1.5*Math.PI, true);
+    crt.closePath()
+    crt.fillStyle = 'blue'
+    crt.fill()
+    */
+
+    /* 绘制线条
+    crt.beginPath()
+    crt.moveTo(50,50)
+    crt.lineTo(150,150)
+    crt.closePath()
+    crt.lineWidth = 5
+    crt.strokeStyle = 'green'
+    crt.stroke()
+    */
+
+    /* 绘制字体
+    crt.font = '34px 微软雅黑'
+    crt.fillText('实心字体',10,50) 
+
+    crt.font = 'bold 34px 微软雅黑'
+    crt.fillStyle = 'green'
+    crt.fillText('bold实心字体',10,100) 
+
+    crt.font = '34px 微软雅黑'
+    crt.strokeText('空心字体',200,150)
+    */
+
+    /* 绘制矩形
+      crt.fillStyle = 'red'
+      crt.fillRect(10,20,50,50)
+      
+      crt.strokeStyle = 'green'
+      crt.lineWidth = 20
+      crt.lineJoin = 'meter' // 直角
+      crt.strokeRect(100,20,30,30)
+      
+      crt.strokeStyle = 'bule'
+      crt.lineWidth = 20
+      crt.lineJoin = 'round' // 圆角
+      crt.strokeRect(20,90,30,30)
+
+      crt.fillStyle = 'orange'
+      crt.lineWidth = 20
+      crt.lineJoin = 'bevel' // 斜角
+      crt.strokeRect(100,90,30,30)
+    */
+  </script>
+</body>
+
+</html>
