@@ -5,7 +5,7 @@
  * @Last Modified by: zcc
  */
 function Dictionaries() {
-  this.dictionaries = Object.create(null)
+  this.dictionaries = {}
   Dictionaries.prototype.set = function (key, val) {
     this.dictionaries[key] = val
   }
